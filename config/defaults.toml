@@ -1,0 +1,53 @@
+[repo]
+name = "architecture-insuretech"
+base_branch = "main"
+work_branch = "solution"
+
+[app]
+name = "scaletestapp"
+image = "ghcr.io/yandex-practicum/scaletestapp"
+tag = "latest"
+port = 8080
+namespace = "default"
+
+[memory_hpa]
+request = "30Mi"
+limit = "30Mi"
+target_utilization = 80
+min_replicas = 1
+max_replicas = 10
+
+[rps_hpa]
+target_rps_per_pod = 5
+rate_window = "1m"
+min_replicas = 1
+max_replicas = 10
+
+[monitoring]
+namespace = "monitoring"
+metric = "http_requests_total"
+scrape_interval = "15s"
+
+[locust]
+users = 100
+spawn_rate = 10
+run_time = "3m"
+
+[capture]
+after_load = "7m"
+
+[nginx]
+upstream = "backend_servers"
+zone = "partner_limit"
+zone_size = "10m"
+key = "$binary_remote_addr"
+rate = "10r/m"
+burst = 0
+status = 429
+
+[requirements]
+rto_minutes = 45
+rpo_minutes = 15
+availability_percent = 99.9
+osago_max_wait_seconds = 60
+osago_peak_concurrent_users = 2500
