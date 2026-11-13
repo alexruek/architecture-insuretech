@@ -85,3 +85,31 @@ def iter_text_files(root):
             text = read_text(path)
             if text is not None:
                 yield path, text
+
+
+def get_value(config, dotted_key):
+    """Возвращает значение по ключу вида раздел.параметр, например monitoring.namespace."""
+    value = config
+    for part in dotted_key.split("."):
+        if not isinstance(value, dict) or part not in value:
+            raise KeyError(dotted_key)
+        value = value[part]
+    return value
+
+
+def main(argv=None):
+    """Печатает значение параметра конфига. Используется в командах вида $(python scripts/_common.py ключ)."""
+    args = sys.argv[1:] if argv is None else argv
+    if len(args) != 1:
+        print("использование: python scripts/_common.py раздел.параметр", file=sys.stderr)
+        return 2
+    try:
+        print(get_value(load_config(), args[0]))
+    except KeyError:
+        print(f"в config/defaults.toml нет ключа {args[0]}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

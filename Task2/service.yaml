@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scaletestapp
+  namespace: default
+  labels:
+    app: scaletestapp
+spec:
+  # NodePort нужен для minikube service scaletestapp --url.
+  type: NodePort
+  selector:
+    app: scaletestapp
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

@@ -20,6 +20,7 @@ max_replicas = 10
 [rps_hpa]
 target_rps_per_pod = 5
 rate_window = "1m"
+metric_name = "http_requests_per_second"
 min_replicas = 1
 max_replicas = 10
 
@@ -27,6 +28,11 @@ max_replicas = 10
 namespace = "monitoring"
 metric = "http_requests_total"
 scrape_interval = "15s"
+prometheus_release = "kube-prometheus-stack"
+prometheus_chart_version = "93.3.0"
+adapter_release = "prometheus-adapter"
+adapter_chart_version = "5.4.1"
+adapter_relist_interval = "30s"
 
 [locust]
 users = 100
@@ -34,7 +40,9 @@ spawn_rate = 10
 run_time = "3m"
 
 [capture]
+baseline = "30s"
 after_load = "7m"
+sample_interval = "30s"
 
 [nginx]
 upstream = "backend_servers"
