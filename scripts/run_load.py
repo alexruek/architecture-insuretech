@@ -5,10 +5,12 @@
 """
 
 import argparse
+import os
 import re
 import subprocess
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 from _common import ROOT, load_config
@@ -48,11 +50,29 @@ def build_command(host, users, spawn_rate, run_time):
     ]
 
 
+def direct_env(host, base=None):
+    """Окружение, в котором запросы к адресу сервиса идут напрямую, минуя прокси.
+
+    На macOS Python берет системные настройки прокси, и запрос к туннелю minikube
+    на 127.0.0.1 уходит в прокси, который отвечает 502.
+    """
+    env = dict(os.environ if base is None else base)
+    hostname = urllib.parse.urlsplit(host).hostname or host
+    for key in ("NO_PROXY", "no_proxy"):
+        items = [item for item in env.get(key, "").split(",") if item]
+        for name in (hostname, "localhost", "127.0.0.1"):
+            if name not in items:
+                items.append(name)
+        env[key] = ",".join(items)
+    return env
+
+
 def check_host(host, timeout=5):
     """Проверяет, что по адресу отвечает тестовое приложение. Возвращает первую строку ответа."""
     url = host.rstrip("/") + "/"
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     try:
-        with urllib.request.urlopen(url, timeout=timeout) as response:
+        with opener.open(url, timeout=timeout) as response:
             text = response.read().decode("utf-8", errors="replace")
     except (urllib.error.URLError, OSError) as error:
         raise SystemExit(f"сервис по адресу {url} не отвечает: {error}") from error
@@ -80,7 +100,7 @@ def run_load(args):
         f"нагрузка: {args.users} пользователей, {args.spawn_rate} в секунду, {args.run_time}",
         flush=True,
     )
-    return subprocess.call(command, cwd=ROOT)
+    return subprocess.call(command, cwd=ROOT, env=direct_env(args.host))
 
 
 def main(argv=None):

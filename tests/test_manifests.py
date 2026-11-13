@@ -282,6 +282,47 @@ def test_locust_command(config):
     assert "--headless" in command
 
 
+def test_load_bypasses_proxy():
+    direct_env = pytest.importorskip("run_load").direct_env
+
+    env = direct_env("http://127.0.0.1:56704", {"HTTPS_PROXY": "http://proxy:3128", "NO_PROXY": "corp"})
+    for key in ("NO_PROXY", "no_proxy"):
+        items = env[key].split(",")
+        assert {"127.0.0.1", "localhost"} <= set(items)
+    assert env["NO_PROXY"].startswith("corp,")
+    assert env["HTTPS_PROXY"] == "http://proxy:3128"
+
+
+def test_check_host_ignores_proxy(monkeypatch):
+    import threading
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+
+    run_load = pytest.importorskip("run_load")
+
+    class Handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            body = "Идентификатор пода: test\n".encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, *args):
+            pass
+
+    server = HTTPServer(("127.0.0.1", 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    # Неработающий прокси в окружении: проверка должна идти мимо него.
+    monkeypatch.setenv("http_proxy", "http://127.0.0.1:9")
+    monkeypatch.setenv("HTTP_PROXY", "http://127.0.0.1:9")
+    try:
+        answer = run_load.check_host(f"http://127.0.0.1:{server.server_port}")
+    finally:
+        server.shutdown()
+    assert answer == "Идентификатор пода: test"
+
+
 def test_capture_log_names_follow_repo_map():
     log_names = pytest.importorskip("capture_scaling").log_names
 
