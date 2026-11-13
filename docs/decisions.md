@@ -48,3 +48,4 @@
 7. Нагрузка подается через minikube service. kubectl port-forward направляет весь трафик в один под, новые реплики не получали бы запросов.
 8. Из kube-prometheus-stack отключены Alertmanager, Grafana, node-exporter, kube-state-metrics, правила по умолчанию и сбор компонентов control plane, которые в Minikube недоступны снаружи. Для задания нужен только Prometheus, а ресурсы Minikube ограничены.
 9. Версии чартов зафиксированы в config/defaults.toml, ключи значений сверены с этими версиями.
+10. Образ ghcr.io/yandex-practicum/scaletestapp опубликован только для linux/amd64. На компьютере с процессором arm64 kubelet не скачивает его с ошибкой no matching manifest for linux/arm64/v8. В этом случае образ собирается из исходников приложения внутри Minikube командой minikube image build с тем же именем и тегом. Манифест не меняется: при imagePullPolicy IfNotPresent kubelet берет локальный образ.
