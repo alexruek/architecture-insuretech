@@ -69,6 +69,12 @@ def direct_env(host, base=None):
 
 def check_host(host, timeout=5):
     """Проверяет, что по адресу отвечает тестовое приложение. Возвращает первую строку ответа."""
+    parts = urllib.parse.urlsplit(host)
+    if parts.scheme not in ("http", "https") or not parts.hostname:
+        raise SystemExit(
+            f"неверный адрес сервиса: {host!r}. Нужен адрес вида http://127.0.0.1:порт "
+            "из вывода minikube service scaletestapp --url"
+        )
     url = host.rstrip("/") + "/"
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     try:

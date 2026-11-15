@@ -323,6 +323,14 @@ def test_check_host_ignores_proxy(monkeypatch):
     assert answer == "Идентификатор пода: test"
 
 
+@pytest.mark.parametrize("host", ["", "/", "127.0.0.1:8080", "ftp://127.0.0.1"])
+def test_check_host_rejects_bad_address(host):
+    check_host = pytest.importorskip("run_load").check_host
+
+    with pytest.raises(SystemExit, match="неверный адрес"):
+        check_host(host)
+
+
 def test_capture_log_names_follow_repo_map():
     log_names = pytest.importorskip("capture_scaling").log_names
 
