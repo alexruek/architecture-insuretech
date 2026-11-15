@@ -306,3 +306,182 @@ def test_task3_problem_elements_on_diagram(task3_text):
     assert elements, "в таблице проблем не названы элементы схемы"
     for element in sorted(elements):
         assert element in task3_text, f"на схеме нет элемента {element}"
+
+
+# Task4: диаграмма контейнеров C4 с продажей ОСАГО, доработанная из схемы Task3 (4.1-4.10).
+
+TASK4 = ROOT / "Task4" / "InsureTech_C4_container-diagram-osago.drawio"
+TASK4_SERVICES = TASK3_SERVICES | {"osago-aggregator"}
+TASK4_KEYWORDS = [
+    "osago-aggregator",
+    "osago-aggregator-db",
+    "SSE",
+    "text/event-stream",
+    "Last-Event-ID",
+    "Redis",
+    "TTL",
+    "outbox",
+    "идемпотентно",
+    "нескольких экземплярах",
+]
+
+
+@pytest.fixture(scope="module")
+def task4_items() -> list[dict]:
+    assert TASK4.is_file(), f"нет файла {TASK4.relative_to(ROOT)}"
+    return diagram_items(TASK4)
+
+
+@pytest.fixture(scope="module")
+def task4_text(task4_items) -> str:
+    return " ".join(item["text"] for item in task4_items)
+
+
+def block_names(items) -> dict:
+    """Идентификатор блока -> имя из поля c4Name или c4Type."""
+    return {item["id"]: item["attrs"].get("c4Name") or item["attrs"].get("c4Type") for item in items if not item["edge"]}
+
+
+def edge_pairs(items) -> list[tuple]:
+    names = block_names(items)
+    return [(names.get(item["source"]), names.get(item["target"]), item) for item in items if item["edge"]]
+
+
+def test_task4_uncompressed():
+    pages = ET.parse(TASK4).getroot().findall("diagram")
+    assert pages, "в файле нет страниц diagram"
+    for page in pages:
+        assert page.find("mxGraphModel") is not None, f"страница {page.get('name')} сохранена сжатой"
+
+
+def test_task4_style():
+    raw = TASK4.read_text(encoding="utf-8")
+    for char, name in FORBIDDEN_CHARS.items():
+        assert char not in raw, name
+    assert "<b>" not in html.unescape(raw), "жирный шрифт в подписи"
+    for style in re.findall(r'style="([^"]*)"', raw):
+        match = re.search(r"fontStyle=(\d+)", style)
+        assert not (match and int(match.group(1)) & 1), f"жирный шрифт в стиле: {style[:60]}"
+
+
+@pytest.mark.parametrize("word", TASK4_KEYWORDS)
+def test_task4_keywords(task4_text, word):
+    assert word.lower() in task4_text.lower()
+
+
+def test_task4_contains_task3_blocks(task3_items, task4_items):
+    """4.1: все блоки схемы Task3 остались на схеме Task4."""
+    task3 = {name for name in block_names(task3_items).values() if name}
+    task4 = {name for name in block_names(task4_items).values() if name}
+    assert task3 <= task4, f"пропали блоки: {sorted(task3 - task4)}"
+
+
+def test_task4_kept_task3_edges(task3_items, task4_items):
+    """4.1: связи схемы Task3 сохранены."""
+    task3 = {(s, t) for s, t, _ in edge_pairs(task3_items)}
+    task4 = {(s, t) for s, t, _ in edge_pairs(task4_items)}
+    assert task3 <= task4, f"пропали связи: {sorted(task3 - task4)}"
+
+
+def test_task4_decomposition(task4_items):
+    """Добавлен только osago-aggregator, разрешенный заданием, брокер это инфраструктура."""
+    services = {
+        item["attrs"]["c4Name"]
+        for item in task4_items
+        if item["attrs"].get("c4Type") == "Container" and "Kotlin" in item["attrs"].get("c4Technology", "")
+    }
+    assert services == TASK4_SERVICES
+
+
+def test_task4_osago_responsibility(task4_items):
+    """4.2: контейнер подписан обязанностью из задания."""
+    block = next(item for item in task4_items if item["attrs"].get("c4Name") == "osago-aggregator")
+    text = block["text"].lower()
+    for part in ("отправляет заявки в страховые", "опрашивает решения", "core-app"):
+        assert part in text
+
+
+def test_task4_osago_storage(config, task4_items):
+    """4.3: у osago-aggregator свое хранилище с технологией из конфига."""
+    db = [item for item in task4_items if item["attrs"].get("c4Type") == "osago-aggregator-db"]
+    assert len(db) == 1
+    assert db[0]["attrs"]["c4Technology"] == config["osago"]["storage"]
+    assert ("osago-aggregator", "osago-aggregator-db") in {(s, t) for s, t, _ in edge_pairs(task4_items)}
+
+
+def test_task4_broker_edges_name_topics(config, task4_items):
+    """4.4, 4.5: стрелки брокера подписаны темой, у каждой темы есть издатель и потребитель с группой."""
+    broker = config["broker"]
+    topics = {broker[key] for key in ("topic_products", "topic_policies", "topic_osago_applications", "topic_osago_offers")}
+    published, consumed = set(), set()
+    for source, target, item in edge_pairs(task4_items):
+        if broker["name"] not in (source, target):
+            continue
+        named = [topic for topic in topics if f"тема {topic}" in item["text"]]
+        assert len(named) == 1, f"стрелка {item['id']}: не названа тема"
+        if target == broker["name"]:
+            published.add(named[0])
+        else:
+            consumed.add(named[0])
+            assert f"группа {target}" in item["text"], f"стрелка {item['id']}: нет группы потребителей"
+    assert published == topics
+    assert consumed == topics
+
+
+def test_task4_osago_api_through_broker(config, task4_items):
+    """4.4, 4.5: core-app и osago-aggregator связаны только через брокер: заявки туда, решения обратно."""
+    broker = config["broker"]
+    pairs = {(s, t, item["text"]) for s, t, item in edge_pairs(task4_items)}
+    for source, target, _ in pairs:
+        assert {source, target} != {"core-app", "osago-aggregator"}, "прямая стрелка core-app и osago-aggregator"
+
+    def has(source, target, topic):
+        return any(s == source and t == target and f"тема {topic}" in text for s, t, text in pairs)
+
+    assert has("core-app", broker["name"], broker["topic_osago_applications"])
+    assert has(broker["name"], "osago-aggregator", broker["topic_osago_applications"])
+    assert has("osago-aggregator", broker["name"], broker["topic_osago_offers"])
+    assert has(broker["name"], "core-app", broker["topic_osago_offers"])
+
+
+def test_task4_osago_calls_insurers(task4_items):
+    """Две операции API страховых компаний из задания: создание заявки и получение предложения."""
+    edges = [item for s, t, item in edge_pairs(task4_items) if (s, t) == ("osago-aggregator", "Системы страховых компаний")]
+    assert len(edges) == 1
+    text = edges[0]["text"]
+    assert "REST" in text and "Создание заявки" in text and "Получение предложения" in text
+
+
+def test_task4_web_integration(task4_items):
+    """4.6, 4.7: REST для создания заявки и отдельная новая стрелка SSE для предложений."""
+    pairs = edge_pairs(task4_items)
+    rest = [item for s, t, item in pairs if (s, t) == ("InsureTech Web", "core-app") and "REST" in item["text"]]
+    sse = [item for s, t, item in pairs if {s, t} == {"InsureTech Web", "core-app"} and "SSE" in item["text"]]
+    assert len(rest) == 1 and "ОСАГО" in rest[0]["text"]
+    assert len(sse) == 1 and sse[0]["id"] != rest[0]["id"]
+    assert sse[0]["text"].count("REST") == 0
+
+
+def test_task4_web_api_operations(task4_text):
+    """4.6: операции API core-app для веб-приложения."""
+    for operation in (
+        "POST /api/v1/osago/applications",
+        "GET /api/v1/osago/applications/{id}/offers",
+        "GET /api/v1/osago/applications/{id}/offers/stream",
+    ):
+        assert operation in task4_text
+
+
+def test_task4_values_match_config(config, task4_text):
+    """Значения на схеме совпадают с конфигом."""
+    osago = config["osago"]
+    assert f"{config['requirements']['osago_max_wait_seconds']} с" in task4_text
+    assert f"{osago['state_ttl_minutes']} минут (TTL)" in task4_text
+    assert f"каждые {osago['sse_heartbeat_seconds']} с" in task4_text
+
+
+def test_task4_edges_connected(task4_items):
+    ids = {item["id"] for item in task4_items if not item["edge"]}
+    for item in task4_items:
+        if item["edge"]:
+            assert item["source"] in ids and item["target"] in ids, f"стрелка {item['id']} не привязана"

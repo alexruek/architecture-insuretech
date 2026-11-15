@@ -67,3 +67,10 @@ replication_factor = 3
 min_insync_replicas = 2
 topic_products = "products-tariffs"
 topic_policies = "policies-issued"
+topic_osago_applications = "osago-applications"
+topic_osago_offers = "osago-offers"
+
+[osago]
+storage = "Redis"
+state_ttl_minutes = 10
+sse_heartbeat_seconds = 15
