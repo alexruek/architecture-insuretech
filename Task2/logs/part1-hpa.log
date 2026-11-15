@@ -1,0 +1,11 @@
+23:16:58 $ kubectl get hpa scaletestapp -n default -w
+23:16:58 NAME           REFERENCE                 TARGETS           MINPODS   MAXPODS   REPLICAS   AGE
+23:16:58 scaletestapp   Deployment/scaletestapp   memory: 34%/80%   1         10        1          29h
+23:16:58 scaletestapp   Deployment/scaletestapp   memory: 35%/80%   1         10        1          29h
+23:17:28 --- нагрузка запущена: 700 пользователей, 3m
+23:17:58 scaletestapp   Deployment/scaletestapp   memory: 67%/80%   1         10        1          29h
+23:18:58 scaletestapp   Deployment/scaletestapp   memory: 88%/80%   1         10        1          30h
+23:20:28 --- нагрузка остановлена, код locust 0
+23:20:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h
+23:22:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h
+23:23:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h

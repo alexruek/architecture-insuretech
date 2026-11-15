@@ -1,0 +1,5 @@
+23:16:58 $ kubectl get pods -l app=scaletestapp -n default -w
+23:16:58 NAME                            READY   STATUS    RESTARTS   AGE
+23:16:58 scaletestapp-7fd5597c4c-sv8sw   1/1     Running   0          30h
+23:17:28 --- нагрузка запущена: 700 пользователей, 3m
+23:20:28 --- нагрузка остановлена, код locust 0
