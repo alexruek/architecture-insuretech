@@ -6,5 +6,5 @@ v4.3.0+gbec5b06
 git version 2.56.0
 gh version 2.102.0 (2026-09-30)
 Python 3.14.7
-locust 2.46.7 from /Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.14/site-packages/locust (Python 3.14.7)
+locust 2.46.7 (Python 3.14.7)
 nginx version: nginx/1.31.8

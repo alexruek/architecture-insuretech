@@ -131,3 +131,16 @@ def test_main_output_and_exit_code(tmp_path, capsys):
     write(tmp_path, "b.md", "а " + DASH + " б\n")
     assert check_style.main([str(tmp_path)]) == 1
     assert capsys.readouterr().out == "b.md:1: длинное тире\n"
+
+
+def test_repo_has_no_personal_paths(repo_root):
+    """В логах и документах нет домашних каталогов: путь выдает имя пользователя."""
+    from _common import iter_text_files
+
+    markers = ("/" + "Users/", "/" + "home/", "C:" + "\\Users")
+    found = [
+        path.relative_to(repo_root).as_posix()
+        for path, text in iter_text_files(repo_root)
+        if any(marker in text for marker in markers)
+    ]
+    assert found == []
