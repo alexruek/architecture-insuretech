@@ -59,3 +59,11 @@ rpo_minutes = 15
 availability_percent = 99.9
 osago_max_wait_seconds = 60
 osago_peak_concurrent_users = 2500
+
+[broker]
+name = "Apache Kafka"
+brokers = 3
+replication_factor = 3
+min_insync_replicas = 2
+topic_products = "products-tariffs"
+topic_policies = "policies-issued"
