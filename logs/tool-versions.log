@@ -5,28 +5,6 @@ Kustomize Version: v5.8.1
 v4.3.0+gbec5b06
 git version 2.56.0
 gh version 2.102.0 (2026-09-30)
-Traceback (most recent call last):
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/urllib3/util/request.py", line 25, in <module>
-    import brotlicffi as _unused_module_brotli  # type: ignore[import-not-found] # noqa: F401
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ModuleNotFoundError: No module named 'brotlicffi'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/bin/locust", line 3, in <module>
-    from locust.main import main
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/locust/__init__.py", line 19, in <module>
-    import urllib3
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/urllib3/__init__.py", line 15, in <module>
-    from ._base_connection import _TYPE_BODY
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/urllib3/_base_connection.py", line 5, in <module>
-    from .util.connection import _TYPE_SOCKET_OPTIONS
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/urllib3/util/__init__.py", line 5, in <module>
-    from .request import SKIP_HEADER, SKIPPABLE_HEADERS, make_headers
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/urllib3/util/request.py", line 27, in <module>
-    import brotli as _unused_module_brotli  # type: ignore[import-not-found] # noqa: F401
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.11/site-packages/brotli.py", line 8, in <module>
-    import _brotli
-KeyboardInterrupt
+Python 3.14.7
+locust 2.46.7 from /Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech/.venv/lib/python3.14/site-packages/locust (Python 3.14.7)
+nginx version: nginx/1.31.8
