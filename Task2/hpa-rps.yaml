@@ -19,4 +19,4 @@ spec:
           name: http_requests_per_second
         target:
           type: AverageValue
-          averageValue: "5"
+          averageValue: "40"
