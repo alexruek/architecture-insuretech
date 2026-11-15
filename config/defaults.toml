@@ -35,7 +35,7 @@ adapter_chart_version = "5.4.1"
 adapter_relist_interval = "30s"
 
 [locust]
-users = 700
+users = 750
 spawn_rate = 50
 run_time = "3m"
 
