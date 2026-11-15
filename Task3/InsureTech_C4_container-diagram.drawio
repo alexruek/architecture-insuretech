@@ -1,148 +1,222 @@
-<mxfile host="app.diagrams.net" compressed="false">
-  <diagram id="insuretech-c4-containers" name="Container diagram">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2840" pageHeight="1800" math="0" shadow="0">
+<mxfile host="app.diagrams.net" version="24.7.8">
+  <diagram id="insuretech-c4-event-driven" name="InsureTech">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="3100" pageHeight="1300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="InsureTech - диаграмма контейнеров после перехода на Event-Driven архитектуру" style="text;align=left;verticalAlign=middle;fontSize=18;fontColor=#333333;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="800" height="40" as="geometry" />
+        <object id="uZ0quFO-MIEIE11IO5jD-1" placeholders="1" c4Name="InsureTech Prod" c4Type="SystemScopeBoundary" c4Application="Виртуальная машина" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;">
+          <mxCell style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="450" y="130" width="1370" height="960" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-23" placeholders="1" c4Name="Клиент" c4Type="Person" c4Description="Клиент" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="510" y="-80" width="200" height="180" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-4" placeholders="1" c4Type="InsureTech Web" c4Container="Container" c4Technology="JavaScript, React" c4Description="Веб-приложение InsureTech" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="shape=mxgraph.c4.webBrowserContainer2;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;strokeColor=#118ACD;fillColor=#23A2D9;strokeColor=#118ACD;strokeColor2=#0E7DAD;fontSize=12;fontColor=#ffffff;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="490" y="160" width="240" height="160" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ckVUTfoMV_SZnMC_Z-Nl-1" placeholders="1" c4Name="client-info" c4Type="Container" c4Technology="Kotlin, SpringBoot" c4Description="Сервис для учета клиентских данных" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="910" y="180" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ckVUTfoMV_SZnMC_Z-Nl-2" placeholders="1" c4Type="client-info-db" c4Container="Container" c4Technology="PostgreSQL" c4Description="БД используется для хранения данных клиентов: ФИО, телефон, паспорт и др. Информация необходима для оформления страховок" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="shape=cylinder3;size=6.172056136592715;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="1290" y="180" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-3" placeholders="1" c4Name="core-app" c4Type="Container" c4Technology="Kotlin, SpringBoot" c4Description="Монолитное приложение: • отображает данные о доступных страховых продуктах • оформляет новые страховки • отображает информацию о купленных страховках • фоновый обработчик публикует события из таблицы outbox" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="490" y="430" width="240" height="150" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-2" placeholders="1" c4Type="core-db" c4Container="Container" c4Technology="PostgreSQL" c4Description="БД используется для хранения тарифов страховых компаний, заявок клиентов на страховые продукты, реплики продуктов и тарифов, а также таблицы outbox" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="shape=cylinder3;size=5.9999511718749545;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="490" y="690" width="240" height="150" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-7" placeholders="1" c4Name="Системы партнеров" c4Type="Software System" c4Description="Системы партнеров, интегрирующие страховые услуги в свои продукты" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="40" y="515" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-36" placeholders="1" c4Name="Платежный сервис" c4Type="Software System" c4Description="Внешний платежный сервис, через который осуществляется оплата страховок. Деньги уходят на счета страховых компаний" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="40" y="320" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-16" placeholders="1" c4Name="ins-product-aggregator" c4Type="Container" c4Technology="Kotlin, SpringBoot" c4Description="Сервис для интеграции со страховыми компаниями с целью получения информации по страховым продуктам. Опрашивает компании по расписанию и публикует изменения в брокер" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="1540" y="430" width="240" height="140" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-19" placeholders="1" c4Name="ins-comp-settlement" c4Type="Container" c4Technology="Kotlin, SpringBoot" c4Description="Сервис для осуществления взаиморасчетов со страховыми компаниями. Ведет реестр оформленных страховок по событиям" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="1540" y="690" width="240" height="130" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-28" placeholders="1" c4Type="ins-comp-settlement-db" c4Container="Container" c4Technology="PostgreSQL" c4Description="БД используется для хранения данных об оформленных страховках и условиях взаиморасчетов с клиентами, а также реплики продуктов и тарифов" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Type%&lt;/font&gt;&lt;div&gt;[%c4Container%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="shape=cylinder3;size=8.50981588924617;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="1540" y="900" width="240" height="140" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-11" placeholders="1" c4Name="Системы страховых компаний" c4Type="Software System" c4Description="Системы страховых компаний, предоставляющие API для получения актуальных тарифов, андерайтинга и оформления страховых продуктов" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="2100" y="540" width="240" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="kafka" placeholders="1" c4Name="Apache Kafka" c4Type="Container" c4Technology="Брокер сообщений, 3 брокера в 3 зонах" c4Description="Инфраструктура, не функциональный сервис. Тема products-tariffs: продукты и тарифы. Тема policies-issued: оформленные страховки" label="&lt;font style=&quot;font-size: 16px&quot;&gt;%c4Name%&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+            <mxGeometry x="985" y="430" width="300" height="240" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-24" placeholders="1" c4Type="Relationship">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-23" target="uZ0quFO-MIEIE11IO5jD-4">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-5" placeholders="1" c4Type="Relationship" c4Technology="REST" c4Description="1. Получение тарифов 2. Создание заявок на страховки" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-4" target="uZ0quFO-MIEIE11IO5jD-3">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-6" placeholders="1" c4Type="Relationship" c4Technology="TCP" c4Description="Работа с данными" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-3" target="uZ0quFO-MIEIE11IO5jD-2">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-10" placeholders="1" c4Type="Relationship" c4Technology="REST" c4Description="Оформление страховок" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-7" target="uZ0quFO-MIEIE11IO5jD-3">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="385" y="575" />
+                <mxPoint x="385" y="542.5" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-37" placeholders="1" c4Type="Relationship" c4Technology="HTTP" c4Description="Проведение оплаты за страховки" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-3" target="uZ0quFO-MIEIE11IO5jD-36">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="385" y="467.5" />
+                <mxPoint x="385" y="380" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-38" placeholders="1" c4Type="Relationship" c4Technology="HTTP" c4Description="Проведение оплаты за страховки (redirect)" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-4" target="uZ0quFO-MIEIE11IO5jD-36">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="160" y="240" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="ckVUTfoMV_SZnMC_Z-Nl-5" placeholders="1" c4Type="Relationship" c4Technology="REST" c4Description="Получение/сохранение информации о клиентах" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.375;exitDx=0;exitDy=0;entryX=0;entryY=0.333;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-4" target="ckVUTfoMV_SZnMC_Z-Nl-1">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ckVUTfoMV_SZnMC_Z-Nl-4" placeholders="1" c4Type="Relationship" c4Technology="REST" c4Description="Получение/сохранение информации о клиентах" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.1;exitDx=0;exitDy=0;entryX=0;entryY=0.833;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-3" target="ckVUTfoMV_SZnMC_Z-Nl-1">
+            <mxGeometry width="240" relative="1" x="0.1" as="geometry">
+              <Array as="points">
+                <mxPoint x="840" y="445" />
+                <mxPoint x="840" y="280" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="ckVUTfoMV_SZnMC_Z-Nl-3" placeholders="1" c4Type="Relationship" c4Technology="TCP" c4Description="Работа с данными" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="ckVUTfoMV_SZnMC_Z-Nl-1" target="ckVUTfoMV_SZnMC_Z-Nl-2">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-29" placeholders="1" c4Type="Relationship" c4Technology="TCP" c4Description="Работа с данными" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-19" target="uZ0quFO-MIEIE11IO5jD-28">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-17" placeholders="1" c4Type="Relationship" c4Technology="REST / SOAP / GraphQL" c4Description="Получение информации по продуктам и тарифам" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-16" target="uZ0quFO-MIEIE11IO5jD-11">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1940" y="500" />
+                <mxPoint x="1940" y="576" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="uZ0quFO-MIEIE11IO5jD-32" placeholders="1" c4Type="Relationship" c4Technology="REST / SOAP / GraphQL" c4Description="Передача данных для взаиморасчетов" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.795;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.795;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-19" target="uZ0quFO-MIEIE11IO5jD-11">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1940" y="755" />
+                <mxPoint x="1940" y="635" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="ev-policies-publish" placeholders="1" c4Type="Relationship" c4Technology="тема policies-issued" c4Description="Публикует оформленные страховки из outbox" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-3" target="kafka">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ev-products-read-core" placeholders="1" c4Type="Relationship" c4Technology="тема products-tariffs, группа core-app" c4Description="Читает обновления продуктов и тарифов" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.4667;exitDx=0;exitDy=0;entryX=1;entryY=0.7467;entryDx=0;entryDy=0;" parent="1" edge="1" source="kafka" target="uZ0quFO-MIEIE11IO5jD-3">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ev-products-publish" placeholders="1" c4Type="Relationship" c4Technology="тема products-tariffs" c4Description="Публикует обновления продуктов и тарифов" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.175;entryDx=0;entryDy=0;" parent="1" edge="1" source="uZ0quFO-MIEIE11IO5jD-16" target="kafka">
+            <mxGeometry width="240" relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ev-products-read-settlement" placeholders="1" c4Type="Relationship" c4Technology="тема products-tariffs, группа ins-comp-settlement" c4Description="Читает обновления продуктов и тарифов" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="kafka" target="uZ0quFO-MIEIE11IO5jD-19">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1412" y="574" />
+                <mxPoint x="1412" y="716" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object id="ev-policies-read-settlement" placeholders="1" c4Type="Relationship" c4Technology="тема policies-issued, группа ins-comp-settlement" c4Description="Читает оформленные страховки" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;">
+          <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" parent="1" edge="1" source="kafka" target="uZ0quFO-MIEIE11IO5jD-19">
+            <mxGeometry width="240" relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1135" y="781" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <mxCell id="n-legend" value="Обозначения&lt;br&gt;Серая сплошная стрелка - синхронный вызов (REST, SQL, HTTP).&lt;br&gt;Оранжевая штриховая стрелка - асинхронное событие через брокер, направление стрелки совпадает с направлением потока данных.&lt;br&gt;В квадратных скобках на оранжевых стрелках указаны тема брокера и группа потребителей." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="20" width="600" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="boundary" value="&lt;font style=&quot;font-size: 16px&quot;&gt;InsureTech&lt;/font&gt;&lt;div&gt;[Software System]&lt;/div&gt;" style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="260" width="2180" height="1140" as="geometry" />
+        <mxCell id="n-es" value="Что переведено на Event-Streaming&lt;br&gt;1. Продукты и тарифы. Было: core-app раз в 15 минут и ins-comp-settlement раз в сутки вызывали REST API ins-product-aggregator, который в том же запросе опрашивал все страховые компании. Стало: ins-product-aggregator публикует изменения в тему products-tariffs, оба сервиса читают ее и обновляют свои реплики.&lt;br&gt;2. Оформленные страховки. Было: ins-comp-settlement раз в сутки забирал у core-app все страховки за день одним запросом по REST. Стало: core-app публикует событие о каждой страховке в тему policies-issued, ins-comp-settlement ведет реестр по мере поступления.&lt;br&gt;Прямых вызовов между core-app, ins-comp-settlement и ins-product-aggregator не осталось.&lt;br&gt;Декомпозиция не менялась: сервисы и их обязанности прежние, добавлен только брокер как инфраструктура." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#D79B00;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="160" width="600" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="client" value="&lt;font style=&quot;font-size: 16px&quot;&gt;Клиент&lt;/font&gt;&lt;div&gt;[Person]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Частный клиент, подбирает и оформляет страховки&lt;/font&gt;&lt;/div&gt;" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-          <mxGeometry x="1010" y="30" width="200" height="180" as="geometry" />
+        <mxCell id="n-outbox" value="Transactional Outbox&lt;br&gt;Применяется в core-app. Страховка и событие о ней записываются в БД core-app одной транзакцией: строка в таблице страховок и строка в таблице outbox. Фоновый обработчик внутри core-app читает outbox и публикует события в тему policies-issued, после подтверждения брокера помечает строку отправленной. Реплики core-app делят строки через SELECT FOR UPDATE SKIP LOCKED, поэтому одно событие не отправляют две реплики одновременно.&lt;br&gt;Причина: потерянное событие это неучтенная страховка в реестре взаиморасчетов. Доставка получается не менее одного раза, дубли отсекает потребитель.&lt;br&gt;Не применяется в ins-product-aggregator. Сервис не меняет собственных данных, источник данных это API страховых компаний. Если публикация не удалась, тот же продукт будет опубликован в следующем цикле опроса." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#D79B00;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="430" width="600" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="partner" value="&lt;font style=&quot;font-size: 16px&quot;&gt;Партнер&lt;/font&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Корпоративный клиент, встраивает страховые услуги в свои продукты&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="1480" y="60" width="260" height="140" as="geometry" />
+        <mxCell id="n-broker" value="Брокер и темы&lt;br&gt;Apache Kafka: 3 брокера, по одному в зоне доступности, фактор репликации 3, min.insync.replicas 2, издатели пишут с acks=all. Потеря одной зоны не останавливает запись и чтение.&lt;br&gt;Тема products-tariffs: ключ события - страховая компания и продукт, очистка compaction. В теме всегда есть последнее состояние каждого продукта, новая или отставшая реплика восстанавливается чтением темы с начала.&lt;br&gt;Тема policies-issued: ключ события - идентификатор страховки. Срок хранения покрывает допустимый простой ins-comp-settlement, после простоя сервис продолжает чтение с сохраненной позиции." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="720" width="600" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="web" value="&lt;font style=&quot;font-size: 16px&quot;&gt;Веб-приложение&lt;/font&gt;&lt;div&gt;[Container: веб-приложение в браузере]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Подбор и оформление страховок, личный кабинет&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="980" y="310" width="260" height="140" as="geometry" />
+        <mxCell id="n-consumers" value="Потребители&lt;br&gt;Идемпотентность: продукты и тарифы обновляются по ключу и версии, более старая версия пропускается. События страховок несут уникальный идентификатор, ins-comp-settlement хранит обработанные идентификаторы и не учитывает страховку дважды.&lt;br&gt;Порядок событий сохраняется в пределах ключа.&lt;br&gt;Сервисы работают в нескольких экземплярах: экземпляры одного сервиса входят в одну группу потребителей, событие обрабатывает один из них.&lt;br&gt;Событие, которое не удалось обработать после повторов, уходит в отдельную тему ошибок и не блокирует остальные." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="960" width="600" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="core" value="&lt;font style=&quot;font-size: 16px&quot;&gt;core-app&lt;/font&gt;&lt;div&gt;[Container: бэкенд-приложение]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Продукты, оформление заявок, оформленные страховки. Фоновый обработчик публикует события из таблицы outbox&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="980" y="600" width="260" height="140" as="geometry" />
+        <mxCell id="n-poll" value="Опрос страховых компаний&lt;br&gt;ins-product-aggregator опрашивает компании по расписанию, а не по запросу потребителей. Каждая компания опрашивается независимо, со своим таймаутом и повтором: медленная или недоступная компания задерживает только свои данные.&lt;br&gt;Подключение еще пяти компаний добавляет пять независимых опросов и не меняет core-app и ins-comp-settlement." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="1180" width="600" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="clientinfo" value="&lt;font style=&quot;font-size: 16px&quot;&gt;client-info&lt;/font&gt;&lt;div&gt;[Container: сервис]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Управление клиентскими данными&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="500" y="600" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="db_client" value="&lt;font style=&quot;font-size: 16px&quot;&gt;БД client-info&lt;/font&gt;&lt;div&gt;[Container: PostgreSQL, схема client_info]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Данные клиентов&lt;/font&gt;&lt;/div&gt;" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="80" y="600" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="db_core" value="&lt;font style=&quot;font-size: 16px&quot;&gt;БД core-app&lt;/font&gt;&lt;div&gt;[Container: PostgreSQL, схема core_app]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Заявки и страховки, реплика продуктов и тарифов, таблица outbox&lt;/font&gt;&lt;/div&gt;" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="1500" y="600" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="kafka" value="&lt;font style=&quot;font-size: 16px&quot;&gt;Apache Kafka&lt;/font&gt;&lt;div&gt;[Container: брокер сообщений, 3 брокера в 3 зонах]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Инфраструктура, не функциональный сервис.&lt;br&gt;Тема products-tariffs: продукты и тарифы&lt;br&gt;Тема policies-issued: оформленные страховки&lt;/font&gt;&lt;/div&gt;" style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="920" y="930" width="380" height="150" as="geometry" />
-        </mxCell>
-        <mxCell id="agg" value="&lt;font style=&quot;font-size: 16px&quot;&gt;ins-product-aggregator&lt;/font&gt;&lt;div&gt;[Container: сервис]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Интеграция со страховыми компаниями, единый список продуктов и тарифов&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="500" y="1200" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="settle" value="&lt;font style=&quot;font-size: 16px&quot;&gt;ins-comp-settlement&lt;/font&gt;&lt;div&gt;[Container: сервис]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Взаиморасчеты со страховыми компаниями, реестр оформленных страховок&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="1500" y="1200" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="db_settle" value="&lt;font style=&quot;font-size: 16px&quot;&gt;БД ins-comp-settlement&lt;/font&gt;&lt;div&gt;[Container: PostgreSQL, схема settlement]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Реестр страховок, реплика продуктов и тарифов, обработанные события&lt;/font&gt;&lt;/div&gt;" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="1920" y="1200" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="insurers" value="&lt;font style=&quot;font-size: 16px&quot;&gt;Страховые компании&lt;/font&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Сейчас пять компаний, планируется десять. REST API каждой компании&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;fontSize=12;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-          <mxGeometry x="980" y="1480" width="260" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="n_legend" value="Обозначения&lt;br&gt;Серая сплошная стрелка - синхронный вызов (REST, SQL).&lt;br&gt;Оранжевая штриховая стрелка - асинхронное событие через брокер, направление стрелки совпадает с направлением потока данных.&lt;br&gt;В квадратных скобках на оранжевых стрелках указана тема брокера и группа потребителей." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="40" width="530" height="150" as="geometry" />
-        </mxCell>
-        <mxCell id="n_es" value="Что переведено на Event-Streaming&lt;br&gt;1. Продукты и тарифы. Было: core-app раз в 15 минут и ins-comp-settlement раз в сутки вызывали REST API ins-product-aggregator, который в том же запросе опрашивал все страховые компании. Стало: ins-product-aggregator публикует изменения в тему products-tariffs, оба сервиса читают ее и обновляют свои реплики.&lt;br&gt;2. Оформленные страховки. Было: ins-comp-settlement раз в сутки забирал у core-app все страховки за день одним запросом по REST. Стало: core-app публикует событие о каждой страховке в тему policies-issued, ins-comp-settlement ведет реестр по мере поступления.&lt;br&gt;Прямых вызовов между core-app, ins-comp-settlement и ins-product-aggregator не осталось.&lt;br&gt;Декомпозиция не менялась: сервисы и их обязанности прежние, добавлен только брокер как инфраструктура." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#D79B00;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="210" width="530" height="330" as="geometry" />
-        </mxCell>
-        <mxCell id="n_outbox" value="Transactional Outbox&lt;br&gt;Применяется в core-app. Страховка и событие о ней записываются в базу одной транзакцией: строка в таблице страховок и строка в таблице outbox. Фоновый обработчик внутри core-app читает outbox и публикует события в тему policies-issued, после подтверждения брокера помечает строку отправленной. Реплики core-app делят строки через SELECT FOR UPDATE SKIP LOCKED, поэтому одно событие не отправляют две реплики одновременно.&lt;br&gt;Причина: потерянное событие это неучтенная страховка в реестре взаиморасчетов. Доставка получается не менее одного раза, дубли отсекает потребитель.&lt;br&gt;Не применяется в ins-product-aggregator. Сервис не меняет собственных данных, источник данных это API страховых компаний. Если публикация не удалась, тот же продукт будет опубликован в следующем цикле опроса." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#D79B00;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="560" width="530" height="330" as="geometry" />
-        </mxCell>
-        <mxCell id="n_broker" value="Брокер и темы&lt;br&gt;Apache Kafka: 3 брокера, по одному в зоне доступности, фактор репликации 3, min.insync.replicas 2, издатели пишут с acks=all. Потеря одной зоны не останавливает запись и чтение.&lt;br&gt;Тема products-tariffs: ключ события - страховая компания и продукт, очистка compaction. В теме всегда есть последнее состояние каждого продукта, новая или отставшая реплика восстанавливается чтением темы с начала.&lt;br&gt;Тема policies-issued: ключ события - идентификатор страховки. Срок хранения покрывает допустимый простой ins-comp-settlement, после простоя сервис продолжает чтение с сохраненной позиции." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="910" width="530" height="290" as="geometry" />
-        </mxCell>
-        <mxCell id="n_consumers" value="Потребители&lt;br&gt;Идемпотентность: продукты и тарифы обновляются по ключу и версии, более старая версия пропускается. События страховок несут уникальный идентификатор, ins-comp-settlement хранит обработанные идентификаторы и не учитывает страховку дважды.&lt;br&gt;Порядок событий сохраняется в пределах ключа.&lt;br&gt;Сервисы работают в нескольких экземплярах: экземпляры одного сервиса входят в одну группу потребителей, событие обрабатывает один из них.&lt;br&gt;Событие, которое не удалось обработать после повторов, уходит в отдельную тему ошибок и не блокирует остальные." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="1220" width="530" height="270" as="geometry" />
-        </mxCell>
-        <mxCell id="n_poll" value="Опрос страховых компаний&lt;br&gt;ins-product-aggregator опрашивает компании по расписанию, а не по запросу потребителей. Каждая компания опрашивается независимо, со своим таймаутом и повтором: медленная или недоступная компания задерживает только свои данные.&lt;br&gt;Подключение еще пяти компаний добавляет пять независимых опросов и не меняет core-app и ins-comp-settlement." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
-          <mxGeometry x="2270" y="1510" width="530" height="200" as="geometry" />
-        </mxCell>
-        <mxCell id="e_client_web" value="Подбирает и оформляет страховки&lt;br&gt;[HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="web">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_web_core" value="Продукты, заявки, страховки&lt;br&gt;[REST, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="web" target="core">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-100" y="0" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_web_client" value="Данные клиента в личном кабинете&lt;br&gt;[REST, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="web" target="clientinfo">
-          <mxGeometry relative="1" x="-0.3" as="geometry">
-            <Array as="points">
-              <mxPoint x="630" y="380" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_partner_core" value="Страховые услуги для продуктов партнера&lt;br&gt;[REST API, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="partner" target="core">
-          <mxGeometry relative="1" x="0.1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1610" y="520" />
-              <mxPoint x="1175" y="520" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_core_client" value="Данные клиента&lt;br&gt;для оформления&lt;br&gt;[REST, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="core" target="clientinfo">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_core_db" value="Чтение и запись.&lt;br&gt;Страховка и событие в outbox&lt;br&gt;одной транзакцией&lt;br&gt;[SQL]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="core" target="db_core">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_client_db" value="Чтение и запись&lt;br&gt;[SQL]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="clientinfo" target="db_client">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_core_kafka" value="Публикует события&lt;br&gt;оформленных страховок&lt;br&gt;из таблицы outbox&lt;br&gt;[тема policies-issued]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=2;endFill=1;strokeColor=#D79B00;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;dashPattern=8 4;exitX=0.15;exitY=1;exitDx=0;exitDy=0;entryX=0.26053;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="core" target="kafka">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-95" y="0" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_kafka_core" value="Читает обновления&lt;br&gt;продуктов и тарифов&lt;br&gt;[тема products-tariffs,&lt;br&gt;группа core-app]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=2;endFill=1;strokeColor=#D79B00;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;dashPattern=8 4;exitX=0.73947;exitY=0;exitDx=0;exitDy=0;entryX=0.85;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="kafka" target="core">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="95" y="0" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_agg_kafka" value="Публикует обновления продуктов и тарифов,&lt;br&gt;отдельное событие на продукт&lt;br&gt;[тема products-tariffs]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=2;endFill=1;strokeColor=#D79B00;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;dashPattern=8 4;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="agg" target="kafka">
-          <mxGeometry relative="1" x="0.35" as="geometry">
-            <Array as="points">
-              <mxPoint x="630" y="1005" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_kafka_settle_p" value="Читает обновления продуктов и тарифов&lt;br&gt;[тема products-tariffs,&lt;br&gt;группа ins-comp-settlement]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=2;endFill=1;strokeColor=#D79B00;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;dashPattern=8 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kafka" target="settle">
-          <mxGeometry relative="1" x="-0.3" as="geometry">
-            <Array as="points">
-              <mxPoint x="1630" y="1005" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_kafka_settle_i" value="Читает события оформленных страховок&lt;br&gt;[тема policies-issued,&lt;br&gt;группа ins-comp-settlement]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=2;endFill=1;strokeColor=#D79B00;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;dashPattern=8 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kafka" target="settle">
-          <mxGeometry relative="1" x="0.25" as="geometry">
-            <Array as="points">
-              <mxPoint x="1110" y="1270" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_settle_db" value="Чтение и запись&lt;br&gt;[SQL]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="settle" target="db_settle">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_agg_ins" value="Опрашивает продукты и тарифы по расписанию,&lt;br&gt;каждую компанию независимо&lt;br&gt;[REST, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="agg" target="insurers">
-          <mxGeometry relative="1" x="0.3" as="geometry">
-            <Array as="points">
-              <mxPoint x="630" y="1550" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_settle_ins" value="Отправляет перечень оформленных страховок&lt;br&gt;раз в месяц&lt;br&gt;[REST, JSON/HTTPS]" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="settle" target="insurers">
-          <mxGeometry relative="1" x="0.3" as="geometry">
-            <Array as="points">
-              <mxPoint x="1630" y="1550" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="n-sync" value="Что остается синхронным&lt;br&gt;Запросы веб-приложения и партнеров к core-app, обращения к client-info, оплата через платежный сервис, вызовы API страховых компаний и ежемесячная отправка перечня страховок ins-comp-settlement. В этих сценариях ответ нужен в рамках запроса или API внешнее." style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" vertex="1" parent="1">
+          <mxGeometry x="2420" y="1340" width="600" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
