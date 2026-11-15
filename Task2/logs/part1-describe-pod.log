@@ -1,27 +1,27 @@
-=== 23:27:28 kubectl describe pods -l app=scaletestapp -n default
-Name:             scaletestapp-7fd5597c4c-sv8sw
+=== 00:39:08 kubectl describe pods -l app=scaletestapp -n default
+Name:             scaletestapp-6dbcd5f45-clw62
 Namespace:        default
 Priority:         0
 Service Account:  default
 Node:             minikube/192.168.49.2
-Start Time:       Sat, 14 Nov 2026 17:09:24 +0500
+Start Time:       Mon, 16 Nov 2026 00:27:24 +0500
 Labels:           app=scaletestapp
-                  pod-template-hash=7fd5597c4c
-Annotations:      kubectl.kubernetes.io/restartedAt: 2026-11-14T17:08:49+05:00
+                  pod-template-hash=6dbcd5f45
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-11-16T00:27:24+05:00
 Status:           Running
-IP:               10.244.0.33
+IP:               10.244.0.36
 IPs:
-  IP:           10.244.0.33
-Controlled By:  ReplicaSet/scaletestapp-7fd5597c4c
+  IP:           10.244.0.36
+Controlled By:  ReplicaSet/scaletestapp-6dbcd5f45
 Containers:
   scaletestapp:
-    Container ID:   docker://d0782fec92924662fdeadfed0f7bff99ce5ae0b694800aee53fe8a8ce6df64be
+    Container ID:   docker://8210d51532281f9ab30a40899a99fc8884bf618340558af48fd6ac5750d0d566
     Image:          ghcr.io/yandex-practicum/scaletestapp:latest
     Image ID:       docker://sha256:eb62665c19847caf4d904510c0ae2b62fd2f5b3765106898540bf007acd3b3bc
     Port:           8080/TCP (http)
     Host Port:      0/TCP (http)
     State:          Running
-      Started:      Sat, 14 Nov 2026 17:09:25 +0500
+      Started:      Mon, 16 Nov 2026 00:27:24 +0500
     Ready:          True
     Restart Count:  0
     Limits:
@@ -31,7 +31,7 @@ Containers:
     Readiness:    http-get http://:http/metrics delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=3
     Environment:  <none>
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-clslh (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tpt4r (ro)
 Conditions:
   Type                        Status
   PodReadyToStartContainers   True 
@@ -40,7 +40,7 @@ Conditions:
   ContainersReady             True 
   PodScheduled                True 
 Volumes:
-  kube-api-access-clslh:
+  kube-api-access-tpt4r:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
@@ -50,4 +50,56 @@ QoS Class:                   Burstable
 Node-Selectors:              <none>
 Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:                      <none>
+
+
+Name:             scaletestapp-6dbcd5f45-k5hhn
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Mon, 16 Nov 2026 00:30:34 +0500
+Labels:           app=scaletestapp
+                  pod-template-hash=6dbcd5f45
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-11-16T00:27:24+05:00
+Status:           Running
+IP:               10.244.0.37
+IPs:
+  IP:           10.244.0.37
+Controlled By:  ReplicaSet/scaletestapp-6dbcd5f45
+Containers:
+  scaletestapp:
+    Container ID:   docker://18a691227f1ec78f2037941b948cfabc983e83f6f9a741faf3bfc202c2baa4d3
+    Image:          ghcr.io/yandex-practicum/scaletestapp:latest
+    Image ID:       docker://sha256:eb62665c19847caf4d904510c0ae2b62fd2f5b3765106898540bf007acd3b3bc
+    Port:           8080/TCP (http)
+    Host Port:      0/TCP (http)
+    State:          Running
+      Started:      Mon, 16 Nov 2026 00:30:34 +0500
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      memory:  30Mi
+    Requests:
+      memory:     30Mi
+    Readiness:    http-get http://:http/metrics delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=3
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gm54n (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-gm54n:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s

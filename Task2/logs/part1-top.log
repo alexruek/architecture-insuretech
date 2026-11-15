@@ -1,63 +1,78 @@
-=== 23:16:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           10Mi
-=== 23:17:28 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           10Mi
-=== 23:17:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   11m          20Mi
-=== 23:18:28 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   11m          20Mi
-=== 23:18:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   38m          26Mi
-=== 23:19:28 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   38m          26Mi
-=== 23:19:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   37m          26Mi
-=== 23:20:28 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   37m          26Mi
-=== 23:20:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   26m          24Mi
-=== 23:21:28 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   26m          24Mi
-=== 23:21:58 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:22:29 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:22:59 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:23:29 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:23:59 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:24:29 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:24:59 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:25:29 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:25:59 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:26:29 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
-=== 23:26:59 kubectl top pods -l app=scaletestapp -n default
-NAME                            CPU(cores)   MEMORY(bytes)   
-scaletestapp-7fd5597c4c-sv8sw   1m           24Mi
+=== 00:28:38 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           6Mi
+=== 00:29:08 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           6Mi
+=== 00:29:38 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   8m           17Mi
+=== 00:30:08 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   8m           17Mi
+=== 00:30:38 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   40m          27Mi
+=== 00:31:08 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   40m          27Mi
+=== 00:31:38 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   39m          27Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           4Mi
+=== 00:32:08 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   39m          27Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           4Mi
+=== 00:32:38 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   35m          26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:33:08 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   35m          26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:33:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:34:09 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:34:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:35:09 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:35:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:36:09 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:36:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:37:09 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           7Mi
+=== 00:37:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           8Mi
+=== 00:38:09 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           8Mi
+=== 00:38:39 kubectl top pods -l app=scaletestapp -n default
+NAME                           CPU(cores)   MEMORY(bytes)   
+scaletestapp-6dbcd5f45-clw62   1m           26Mi            
+scaletestapp-6dbcd5f45-k5hhn   1m           8Mi

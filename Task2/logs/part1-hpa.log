@@ -1,11 +1,16 @@
-23:16:58 $ kubectl get hpa scaletestapp -n default -w
-23:16:58 NAME           REFERENCE                 TARGETS           MINPODS   MAXPODS   REPLICAS   AGE
-23:16:58 scaletestapp   Deployment/scaletestapp   memory: 34%/80%   1         10        1          29h
-23:16:58 scaletestapp   Deployment/scaletestapp   memory: 35%/80%   1         10        1          29h
-23:17:28 --- нагрузка запущена: 700 пользователей, 3m
-23:17:58 scaletestapp   Deployment/scaletestapp   memory: 67%/80%   1         10        1          29h
-23:18:58 scaletestapp   Deployment/scaletestapp   memory: 88%/80%   1         10        1          30h
-23:20:28 --- нагрузка остановлена, код locust 0
-23:20:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h
-23:22:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h
-23:23:58 scaletestapp   Deployment/scaletestapp   memory: 82%/80%   1         10        1          30h
+00:28:38 $ kubectl get hpa scaletestapp -n default -w
+00:28:38 NAME           REFERENCE                 TARGETS           MINPODS   MAXPODS   REPLICAS   AGE
+00:28:38 scaletestapp   Deployment/scaletestapp   memory: 22%/80%   1         10        1          73s
+00:29:08 --- нагрузка запущена: 750 пользователей, 3m
+00:29:34 scaletestapp   Deployment/scaletestapp   memory: 57%/80%   1         10        1          2m9s
+00:30:34 scaletestapp   Deployment/scaletestapp   memory: 92%/80%   1         10        1          3m9s
+00:30:49 scaletestapp   Deployment/scaletestapp   memory: 92%/80%   1         10        2          3m24s
+00:31:34 scaletestapp   Deployment/scaletestapp   memory: 54%/80%   1         10        2          4m9s
+00:32:08 --- нагрузка остановлена, код locust 0
+00:32:34 scaletestapp   Deployment/scaletestapp   memory: 56%/80%   1         10        2          5m9s
+00:33:34 scaletestapp   Deployment/scaletestapp   memory: 56%/80%   1         10        2          6m9s
+00:34:34 scaletestapp   Deployment/scaletestapp   memory: 57%/80%   1         10        2          7m9s
+00:35:34 scaletestapp   Deployment/scaletestapp   memory: 57%/80%   1         10        2          8m9s
+00:36:34 scaletestapp   Deployment/scaletestapp   memory: 57%/80%   1         10        2          9m9s
+00:37:34 scaletestapp   Deployment/scaletestapp   memory: 58%/80%   1         10        2          10m
+00:38:34 scaletestapp   Deployment/scaletestapp   memory: 58%/80%   1         10        2          11m
