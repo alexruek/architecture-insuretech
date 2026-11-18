@@ -1,0 +1,65 @@
+"""
+API сервиса управления клиентскими данными client-info.
+Схема заменяет ресурсы REST API v1:
+GET /clients/{id}, GET /clients/{id}/documents, GET /clients/{id}/relatives.
+"""
+schema {
+  query: Query
+}
+
+"""
+Точка входа для чтения данных клиента.
+Потребитель запрашивает только нужные поля карточки, документы и родственники
+выбираются вложенными полями в том же запросе.
+"""
+type Query {
+  """
+  Клиент по идентификатору. Возвращает null, если клиент не найден.
+  Заменяет GET /clients/{id}, а вложенные поля documents и relatives
+  заменяют GET /clients/{id}/documents и GET /clients/{id}/relatives.
+  """
+  client(
+    "Идентификатор клиента"
+    id: ID!
+  ): Client
+}
+
+"Клиент"
+type Client {
+  "Идентификатор клиента"
+  id: ID!
+  "ФИО клиента"
+  name: String
+  "Возраст, полных лет"
+  age: Int
+  "Документы клиента. Пустой список, если документов нет"
+  documents: [Document!]!
+  "Родственники клиента. Пустой список, если родственников нет"
+  relatives: [Relative!]!
+}
+
+"Документ клиента"
+type Document {
+  "Идентификатор документа"
+  id: ID!
+  "Тип документа"
+  type: String
+  "Номер документа"
+  number: String
+  "Дата выдачи"
+  issueDate: String
+  "Дата окончания действия"
+  expiryDate: String
+}
+
+"Родственник клиента"
+type Relative {
+  "Идентификатор записи о родственнике"
+  id: ID!
+  "Степень родства"
+  relationType: String
+  "ФИО родственника"
+  name: String
+  "Возраст, полных лет"
+  age: Int
+}
