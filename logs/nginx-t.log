@@ -1,0 +1,5 @@
+00:29:17.235 nginx version: nginx/1.31.8
+00:29:17.235 nginx -t для временной копии Task6/nginx.conf
+nginx: the configuration file tmp/nginx.conf syntax is ok
+nginx: configuration file tmp/nginx.conf test is successful
+00:29:17.252 код возврата 0
