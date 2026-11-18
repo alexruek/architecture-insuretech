@@ -1,0 +1,40 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech
+plugins: locust-2.46.7
+collected 267 items
+
+tests/test_diagrams.py ................................................. [ 18%]
+..................................................                       [ 37%]
+tests/test_docs.py .............                                         [ 41%]
+tests/test_graphql_schema.py .......................                     [ 50%]
+tests/test_manifests.py .............................................    [ 67%]
+tests/test_nginx_conf.py .............                                   [ 72%]
+tests/test_structure.py ...........................                      [ 82%]
+tests/test_style.py ..............................................F      [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_repo_has_no_personal_paths ________________________
+
+repo_root = PosixPath('/Users/sasha/Documents/Обучение/Яндекс_Практикум/Архитектор_ПО/architecture-insuretech')
+
+    def test_repo_has_no_personal_paths(repo_root):
+        """В логах и документах нет домашних каталогов: путь выдает имя пользователя."""
+        from _common import iter_text_files
+    
+        markers = ("/" + "Users/", "/" + "home/", "C:" + "\\Users")
+        found = [
+            path.relative_to(repo_root).as_posix()
+            for path, text in iter_text_files(repo_root)
+            if any(marker in text for marker in markers)
+        ]
+>       assert found == []
+E       AssertionError: assert ['logs/pytest.log'] == []
+E         
+E         Left contains one more item: 'logs/pytest.log'
+E         Use -v to get more diff
+
+tests/test_style.py:146: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_style.py::test_repo_has_no_personal_paths - AssertionError:...
+======================== 1 failed, 266 passed in 0.96s =========================
