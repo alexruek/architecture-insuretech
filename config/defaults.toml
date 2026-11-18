@@ -52,6 +52,12 @@ key = "$binary_remote_addr"
 rate = "10r/m"
 burst = 0
 status = 429
+listen = 80
+location = "/"
+servers = ["backend1.example.com", "backend2.example.com", "backend3.example.com"]
+check_fast_requests = 12
+check_series_seconds = 60
+check_series_interval_seconds = 1
 
 [requirements]
 rto_minutes = 45
