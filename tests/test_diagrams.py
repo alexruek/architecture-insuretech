@@ -485,3 +485,103 @@ def test_task4_edges_connected(task4_items):
     for item in task4_items:
         if item["edge"]:
             assert item["source"] in ids and item["target"] in ids, f"стрелка {item['id']} не привязана"
+
+
+# Task4: паттерны отказоустойчивости, несколько экземпляров, оценка нагрузки (4.8-4.10).
+
+# Значки из библиотеки "Обозначения паттернов отказоустойчивости": значение prIcon в стиле.
+PATTERN_ICONS = {"Timeout": "quota", "Retry": "deploy", "Rate Limiting": "job", "Circuit Breaker": "c_role"}
+LIBRARY_SHAPE = "shape=mxgraph.kubernetes.icon2"
+TASK4_PATTERN_KEYWORDS = ["Circuit Breaker", "Retry", "Timeout", "Rate Limiting", "2500", "60 с"]
+
+
+def pattern_icons(items) -> list[dict]:
+    model = ET.parse(TASK4).getroot().find("diagram/mxGraphModel/root")
+    styles = {}
+    for node in model:
+        cell = node if node.tag == "mxCell" else node.find("mxCell")
+        styles[node.get("id")] = cell.get("style") or ""
+    return [item for item in items if item["attrs"].get("pattern")], styles
+
+
+@pytest.mark.parametrize("word", TASK4_PATTERN_KEYWORDS)
+def test_task4_pattern_keywords(task4_text, word):
+    assert word in task4_text
+
+
+def test_task4_pattern_icons_from_library(task4_items):
+    """4.8: значки паттернов взяты из библиотеки и привязаны к существующим стрелкам."""
+    icons, styles = pattern_icons(task4_items)
+    edges = {item["id"]: item for item in task4_items if item["edge"]}
+    assert icons
+    for icon in icons:
+        name = icon["attrs"]["pattern"]
+        assert LIBRARY_SHAPE in styles[icon["id"]] and f"prIcon={PATTERN_ICONS[name]}" in styles[icon["id"]]
+        assert icon["attrs"]["patternEdge"] in edges, f"значок {icon['id']}: нет стрелки"
+
+
+def test_task4_patterns_on_required_edges(task4_items):
+    """4.8: все четыре паттерна на вызовах страховых компаний, Rate Limiting на входе, Timeout и Retry на SSE."""
+    icons, _ = pattern_icons(task4_items)
+    names = block_names(task4_items)
+    edges = {item["id"]: item for item in task4_items if item["edge"]}
+    placed = {}
+    for icon in icons:
+        edge = edges[icon["attrs"]["patternEdge"]]
+        key = (names[edge["source"]], names[edge["target"]], "SSE" in edge["text"])
+        placed.setdefault(key, set()).add(icon["attrs"]["pattern"])
+    assert placed[("osago-aggregator", "Системы страховых компаний", False)] == set(PATTERN_ICONS)
+    assert "Rate Limiting" in placed[("Системы партнеров", "core-app", False)]
+    assert "Rate Limiting" in placed[("InsureTech Web", "core-app", False)]
+    assert {"Timeout", "Retry"} <= placed[("core-app", "InsureTech Web", True)]
+
+
+def test_task4_patterns_legend(task4_items):
+    """На схеме есть легенда со всеми четырьмя значками."""
+    model = ET.parse(TASK4).getroot().find("diagram/mxGraphModel/root")
+    legend = [node.get("style") or "" for node in model if (node.get("id") or "").startswith("legend-icon-")]
+    assert sorted(re.search(r"prIcon=(\w+)", style).group(1) for style in legend) == sorted(PATTERN_ICONS.values())
+
+
+def test_task4_patterns_match_config(config, task4_text):
+    """Параметры паттернов на схеме совпадают с конфигом, отвергнутые паттерны обоснованы."""
+    osago = config["osago"]
+    assert f"ограничен {osago['insurer_call_timeout_seconds']} с" in task4_text
+    assert f"до {osago['retry_max_attempts']} попыток" in task4_text
+    assert f"от {osago['retry_base_delay_ms']} мс" in task4_text
+    assert f"последние {osago['cb_window_calls']} вызовов" in task4_text
+    assert f"не меньше {osago['cb_failure_rate_percent']}%" in task4_text
+    assert f"на {osago['cb_open_seconds']} с" in task4_text
+    assert f"не больше {osago['web_rate_limit_per_minute']} заявок" in task4_text
+    assert f"{config['nginx']['rate'].replace('r/m', '')} запросов в минуту на партнера" in task4_text
+    assert "Где паттерны не нужны" in task4_text
+
+
+def test_task4_instances(task4_text):
+    """4.9: работа при нескольких экземплярах описана для osago-aggregator и core-app."""
+    for part in ("группу потребителей osago-aggregator", "аренду", "в собственной группе", "SKIP LOCKED"):
+        assert part in task4_text
+
+
+def test_task4_load_estimate(config, task4_text):
+    """4.10: числа оценки нагрузки выводятся из конфига."""
+    osago, req = config["osago"], config["requirements"]
+    users, wait = req["osago_peak_concurrent_users"], req["osago_max_wait_seconds"]
+    polls, t, interval = 0, osago["poll_first_seconds"], osago["poll_first_seconds"]
+    while t <= wait:
+        polls += 1
+        interval = min(interval * 2, osago["poll_max_interval_seconds"])
+        t += interval
+    rate = -(-users // wait)
+    insurers = osago["insurers_planned"]
+    for phrase in (
+        f"около {rate} новых заявок в секунду",
+        f"не больше {polls} опросов",
+        f"до {rate * polls} опросов в секунду",
+        f"до {rate * (polls + 1) * insurers} исходящих",
+        f"до {rate * (insurers + 1)} решений в секунду",
+        f"{users * insurers} записей",
+        f"до {-(-users // 3)} на экземпляр",
+        "выдерживает пик",
+    ):
+        assert phrase in task4_text, phrase

@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram id="insuretech-c4-osago" name="InsureTech">
-    <mxGraphModel dx="1576" dy="2246" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3800" pageHeight="1700" math="0" shadow="0">
+    <mxGraphModel dx="1576" dy="2246" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4440" pageHeight="1700" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -237,7 +237,7 @@
             <mxGeometry relative="1" width="240" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Type="Relationship" c4Technology="тема osago-offers, группа core-app" c4Description="Читает решения страховых компаний" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="ev-osago-offers-read-core">
+        <object placeholders="1" c4Type="Relationship" c4Technology="тема osago-offers, группа core-app и группа каждого экземпляра для SSE" c4Description="Читает решения страховых компаний" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;%c4Description%&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="ev-osago-offers-read-core">
           <mxCell edge="1" parent="1" source="kafka" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#D79B00;whiteSpace=wrap;exitX=0;exitY=0.6852;entryX=1;entryY=0.881;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="uZ0quFO-MIEIE11IO5jD-3">
             <mxGeometry relative="1" width="240" as="geometry" />
           </mxCell>
@@ -288,6 +288,94 @@
         </mxCell>
         <mxCell id="n-osago-db" parent="1" style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" value="Хранилище osago-aggregator: Redis&lt;br&gt;Нужно. Сервис работает в нескольких экземплярах, а опрос заявки длится до 60 с: состояние опроса должно пережить перезапуск экземпляра и быть доступно любому экземпляру.&lt;br&gt;По паре заявка и страховая компания хранится идентификатор заявки у страховой, статус, время следующего опроса, число попыток и срок ответа. Очередь опросов - сортированное множество по времени следующего опроса.&lt;br&gt;Данные короткоживущие: ключи живут 10 минут (TTL), итоговые решения хранит core-app в core-db. Поэтому Redis, а не PostgreSQL: долгого хранения и отчетов нет, нужны быстрые атомарные операции и TTL.&lt;br&gt;Ведущий узел и реплика Redis стоят в разных зонах, переключение выполняет Redis Sentinel. Если при переключении часть состояния потеряна, это затрагивает только заявки в процессе опроса: core-app завершит их по сроку 60 с." vertex="1">
           <mxGeometry height="300" width="640" x="3080" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="n-patterns" parent="1" style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#D79B00;" value="Паттерны отказоустойчивости&lt;br&gt;Timeout. osago-aggregator к страховым компаниям: каждый HTTP-вызов ограничен 5 с, зависшая страховая не держит соединения и потоки. Общий срок ответа страховой по заявке 60 с, после него публикуется событие &quot;нет ответа&quot;. core-app к веб-приложению: поток SSE завершается по сроку заявки.&lt;br&gt;Retry. Создание заявки в страховой повторяется при ошибке 5xx, таймауте или обрыве соединения: до 3 попыток, экспоненциальная задержка от 500 мс со случайной добавкой, в пределах срока заявки. Ошибки 4xx не повторяются. Неудачный опрос решения повторяется следующим опросом по расписанию. Браузер после обрыва SSE переподключается с заголовком Last-Event-ID.&lt;br&gt;Circuit Breaker. В osago-aggregator отдельно на каждую страховую компанию: если за последние 20 вызовов доля ошибок не меньше 50%, вызовы этой страховой прекращаются на 30 с, затем пробные вызовы. Пока цепь разомкнута, по новым заявкам сразу публикуется событие &quot;страховая недоступна&quot;, клиент не ждет ее ответа. Состояние цепи у каждого экземпляра свое: все экземпляры видят одни и те же ошибки страховой.&lt;br&gt;Rate Limiting. Партнеры к core-app: 10 запросов в минуту на партнера на входе (задание 6). Веб-приложение: не больше 5 заявок на ОСАГО в минуту на клиента, каждая заявка размножается на все страховые компании. osago-aggregator к страховой компании: исходящий лимит по квоте из договора с ней, общий для всех экземпляров (счетчик в Redis). При исчерпании лимита опрос сдвигается на следующий интервал, а не отбрасывается.&lt;br&gt;Где паттерны не нужны. Между сервисами и брокером: интеграция асинхронная, сообщения ждут в теме, издатели Kafka повторяют отправку сами, ошибки потребителей уходят в тему ошибок (задание 3). Circuit Breaker и Retry между core-app и osago-aggregator не нужны: прямых вызовов между ними нет." vertex="1">
+          <mxGeometry height="560" width="640" x="3740" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="n-instances" parent="1" style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" value="Сервисы в нескольких экземплярах&lt;br&gt;osago-aggregator. Экземпляры входят в одну группу потребителей osago-aggregator: заявку из темы osago-applications получает один экземпляр. Очередь опросов лежит в Redis, экземпляр атомарно забирает задачу с наступившим временем опроса и ставит на нее аренду. Одну пару заявка и страховая компания одновременно опрашивает только один экземпляр. Если экземпляр упал, аренда истекает и опрос продолжает другой экземпляр.&lt;br&gt;core-app. Соединение SSE держит один экземпляр, выбранный балансировщиком, а событие из группы core-app достается любому экземпляру. Поэтому тему osago-offers core-app читает двумя способами: в группе core-app один экземпляр сохраняет решение в core-db, а каждый экземпляр еще читает тему в собственной группе с конца и отправляет в SSE только события тех заявок, чьи соединения держит. Привязка клиента к экземпляру на балансировщике не нужна.&lt;br&gt;При переподключении SSE на другой экземпляр он отдает сохраненные решения из core-db по Last-Event-ID, затем новые события. Повтор одного решения браузер отбрасывает по паре заявка и страховая компания.&lt;br&gt;Таблицу outbox экземпляры core-app делят через SELECT FOR UPDATE SKIP LOCKED (задание 3)." vertex="1">
+          <mxGeometry height="420" width="640" x="3740" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="n-load" parent="1" style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" value="Оценка нагрузки в пике&lt;br&gt;2500 одновременных пользователей, заявка ждет решений до 60 с. В худшем случае заявки сменяются раз в 60 с: около 42 новых заявок в секунду. Расчет на 10 страховых компаний, сейчас их 5.&lt;br&gt;Опрос страховой: первый через 2 с, дальше интервал удваивается до 5 с, не больше 12 опросов за 60 с. Между ответом страховой и показом на экране проходит не больше одного интервала опроса, 5 с.&lt;br&gt;Одна страховая компания получает до 42 заявок и до 504 опросов в секунду, если ни одна не ответила раньше срока. На 10 страховых компаний osago-aggregator делает до 5460 исходящих вызовов в секунду неблокирующим HTTP-клиентом, экземпляры добавляет HPA по отставанию группы потребителей и размеру очереди опросов.&lt;br&gt;Брокер: до 42 заявок и до 462 решений в секунду, для Kafka из трех брокеров это малая нагрузка. Redis: 25000 записей состояния опроса и несколько операций на опрос, укладывается в один узел.&lt;br&gt;SSE: 2500 открытых соединений, на трех и более экземплярах core-app это до 834 на экземпляр. Соединение SSE не занимает поток сервера (асинхронный режим), пустой комментарий раз в 15 с дает около 167 мелких записей в секунду. Вывод: выбранная интеграция выдерживает пик, узкое место - квоты API страховых компаний, их защищает исходящий Rate Limiting." vertex="1">
+          <mxGeometry height="460" width="640" x="3740" y="1040" as="geometry" />
+        </mxCell>
+        <object label="" pattern="Timeout" patternEdge="osago-insurers" tooltip="Timeout: 5 с на вызов, срок заявки" id="pattern-1">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=quota" vertex="1">
+            <mxGeometry x="1460" y="1110" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="pattern-1-caption" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Timeout" vertex="1">
+          <mxGeometry x="1435" y="1150.4" width="90" height="30" as="geometry" />
+        </mxCell>
+        <object label="" pattern="Retry" patternEdge="osago-insurers" tooltip="Retry: создание заявки, экспоненциальная задержка со случайной добавкой" id="pattern-2">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=deploy" vertex="1">
+            <mxGeometry x="1560" y="1110" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="pattern-2-caption" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Retry" vertex="1">
+          <mxGeometry x="1535" y="1150.4" width="90" height="30" as="geometry" />
+        </mxCell>
+        <object label="" pattern="Circuit Breaker" patternEdge="osago-insurers" tooltip="Circuit Breaker: отдельно на каждую страховую компанию" id="pattern-3">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=c_role" vertex="1">
+            <mxGeometry x="1660" y="1110" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="pattern-3-caption" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Circuit Breaker" vertex="1">
+          <mxGeometry x="1635" y="1150.4" width="90" height="30" as="geometry" />
+        </mxCell>
+        <object label="" pattern="Rate Limiting" patternEdge="osago-insurers" tooltip="Rate Limiting: исходящий лимит по квоте страховой компании" id="pattern-4">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=job" vertex="1">
+            <mxGeometry x="1760" y="1110" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="pattern-4-caption" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Rate Limiting" vertex="1">
+          <mxGeometry x="1735" y="1150.4" width="90" height="30" as="geometry" />
+        </mxCell>
+        <object label="" pattern="Timeout" patternEdge="sse-offers" tooltip="Timeout: поток SSE завершается по сроку заявки" id="pattern-5">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=quota" vertex="1">
+            <mxGeometry x="745" y="325" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="" pattern="Retry" patternEdge="sse-offers" tooltip="Retry: переподключение браузера с Last-Event-ID" id="pattern-6">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=deploy" vertex="1">
+            <mxGeometry x="792" y="325" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="" pattern="Rate Limiting" patternEdge="uZ0quFO-MIEIE11IO5jD-5" tooltip="Rate Limiting: заявки на ОСАГО от одного клиента" id="pattern-7">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=job" vertex="1">
+            <mxGeometry x="498" y="382" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="" pattern="Rate Limiting" patternEdge="uZ0quFO-MIEIE11IO5jD-10" tooltip="Rate Limiting: лимит партнера на входе (задание 6)" id="pattern-8">
+          <mxCell parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=job" vertex="1">
+            <mxGeometry x="296" y="584" width="40" height="38.4" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="n-patterns-legend" parent="1" vertex="1" style="text;align=left;verticalAlign=top;spacing=8;fontSize=12;fontColor=#000000;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#828282;" value="Обозначения паттернов отказоустойчивости (значок стоит у стрелки, к вызовам которой применен паттерн)">
+          <mxGeometry x="450" y="1360" width="760" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-icon-1" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=quota" vertex="1">
+          <mxGeometry x="480" y="1410" width="40" height="38.4" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-caption-1" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Timeout" vertex="1">
+          <mxGeometry x="525" y="1415" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-icon-2" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=deploy" vertex="1">
+          <mxGeometry x="660" y="1410" width="40" height="38.4" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-caption-2" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Retry" vertex="1">
+          <mxGeometry x="705" y="1415" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-icon-3" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=c_role" vertex="1">
+          <mxGeometry x="840" y="1410" width="40" height="38.4" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-caption-3" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Circuit Breaker" vertex="1">
+          <mxGeometry x="885" y="1415" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-icon-4" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=job" vertex="1">
+          <mxGeometry x="1020" y="1410" width="40" height="38.4" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-caption-4" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#404040;" value="Rate Limiting" vertex="1">
+          <mxGeometry x="1065" y="1415" width="110" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
