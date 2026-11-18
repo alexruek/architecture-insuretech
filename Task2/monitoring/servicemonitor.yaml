@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: scaletestapp
+  namespace: default
+  labels:
+    app: scaletestapp
+spec:
+  selector:
+    matchLabels:
+      app: scaletestapp
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    # Prometheus Operator добавляет к рядам метки namespace и pod, по ним адаптер считает RPS на под.
+    - port: http
+      path: /metrics
+      interval: 15s

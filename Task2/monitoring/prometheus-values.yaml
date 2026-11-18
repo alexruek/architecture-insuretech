@@ -1,0 +1,33 @@
+# Значения чарта kube-prometheus-stack для Minikube: Prometheus и Prometheus Operator.
+# Компоненты, которые не нужны для задания и нагружают кластер, отключены.
+defaultRules:
+  create: false
+alertmanager:
+  enabled: false
+grafana:
+  enabled: false
+nodeExporter:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+# В Minikube эти компоненты не отдают метрики наружу, их цели висели бы в состоянии DOWN.
+kubeEtcd:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+prometheus:
+  prometheusSpec:
+    scrapeInterval: 15s
+    evaluationInterval: 15s
+    retention: 1d
+    # Prometheus выбирает все ServiceMonitor кластера, а не только с меткой релиза.
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi

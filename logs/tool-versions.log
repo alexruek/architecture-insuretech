@@ -1,0 +1,10 @@
+minikube version: v1.39.0
+commit: 7a9f6a841470a207de8cf4bafcccee0969d8ba10
+Client Version: v1.37.1
+Kustomize Version: v5.8.1
+v4.3.0+gbec5b06
+git version 2.56.0
+gh version 2.102.0 (2026-09-30)
+Python 3.14.7
+locust 2.46.7 (Python 3.14.7)
+nginx version: nginx/1.31.8
