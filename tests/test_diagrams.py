@@ -585,3 +585,38 @@ def test_task4_load_estimate(config, task4_text):
         "выдерживает пик",
     ):
         assert phrase in task4_text, phrase
+
+
+# Легенда схем Task3 и Task4: серая сплошная стрелка - синхронный вызов,
+# оранжевая штриховая - событие через брокер.
+SYNC_COLOR = "#828282"
+ASYNC_COLOR = "#d79b00"
+
+
+def relationship_styles(path: Path) -> list[tuple[str, str]]:
+    """Возвращает пары (технология связи, стиль стрелки) для связей C4."""
+    root = ET.parse(path).getroot()
+    result = []
+    for obj in root.iter("object"):
+        if obj.get("c4Type") != "Relationship":
+            continue
+        cell = obj.find("mxCell")
+        if cell is not None and cell.get("edge") == "1":
+            result.append((obj.get("c4Technology", ""), cell.get("style", "")))
+    return result
+
+
+@pytest.mark.parametrize("path", [TASK3, TASK4], ids=["Task3", "Task4"])
+def test_edges_match_legend(path):
+    """Стрелки событий оформлены так, как описано в легенде схемы."""
+    events = 0
+    for technology, style in relationship_styles(path):
+        color = re.search(r"strokeColor=([^;]+)", style)
+        color = color.group(1).lower() if color else ""
+        dashed = "dashed=1" in style
+        if technology.startswith("тема "):
+            events += 1
+            assert color == ASYNC_COLOR and dashed, f"{technology}: событие не оранжевое штриховое"
+        elif not technology.startswith("SSE"):
+            assert color == SYNC_COLOR and not dashed, f"{technology}: синхронный вызов не серый сплошной"
+    assert events > 0
