@@ -31,9 +31,14 @@ def test_gitkeep_removed_when_real_file_present(repo_root, name):
     assert not (others and gitkeep.exists()), f"{name}: .gitkeep рядом с настоящим файлом"
 
 
-@pytest.mark.parametrize("path", ["logs", "docs/diagrams", "docs/screenshots"])
+@pytest.mark.parametrize("path", ["logs", "docs/diagrams"])
 def test_service_dir_exists(repo_root, path):
     assert (repo_root / path).is_dir()
+
+
+@pytest.mark.parametrize("path", ["logs", "docs/diagrams"])
+def test_service_dir_without_gitkeep(repo_root, path):
+    assert not (repo_root / path / ".gitkeep").exists(), f"{path}: лишний .gitkeep"
 
 
 def test_config_sections(config):
